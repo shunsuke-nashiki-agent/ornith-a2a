@@ -9,6 +9,10 @@ def subtract(a, b):
     return a - b
 
 
+def multiply(a, b):
+    return a * b
+
+
 def roman(n):
     if not isinstance(n, int) or isinstance(n, bool):
         raise TypeError('roman(n) requires an int')
