@@ -13,6 +13,29 @@ def multiply(a, b):
     return a * b
 
 
+def base_convert(n, base):
+    if not isinstance(n, int) or isinstance(n, bool):
+        raise TypeError('base_convert(n, base) requires an int for n')
+    if not isinstance(base, int) or isinstance(base, bool):
+        raise TypeError('base_convert(n, base) requires an int for base')
+    if not 2 <= base <= 36:
+        raise ValueError('base_convert(n, base) requires 2 <= base <= 36')
+
+    digits = '0123456789abcdefghijklmnopqrstuvwxyz'
+    if n == 0:
+        return '0'
+
+    negative = n < 0
+    n = abs(n)
+    chars = []
+    while n > 0:
+        n, remainder = divmod(n, base)
+        chars.append(digits[remainder])
+    chars.reverse()
+    text = ''.join(chars)
+    return '-' + text if negative else text
+
+
 def roman(n):
     if not isinstance(n, int) or isinstance(n, bool):
         raise TypeError('roman(n) requires an int')
